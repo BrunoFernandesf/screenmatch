@@ -1,64 +1,23 @@
 package br.com.bruno.screenmatch.modelo;
 
+import br.com.bruno.screenmatch.calculo.Classificavel;
+
 import java.util.Scanner;
 
-public class Filme {
-    private String nome;
-    private int anoLancamento;
-    private int duracaoMinutos;
-    private boolean incluidoPlano;
-    private double somaAvaliacao;
-    private int totalAvaliacao;
+//Herda da classe Titulo
+public class Filme extends Titulo implements Classificavel {
+    private String diretor;
 
-    public String getNome() {
-        return nome;
+    public String getDiretor() {
+        return diretor;
     }
 
-    public int getAnoLancamento() {
-        return anoLancamento;
+    public void setDiretor(String diretor) {
+        this.diretor = diretor;
     }
 
-    public int getDuracaoMinutos() {
-        return duracaoMinutos;
-    }
-
-    public boolean isIncluidoPlano() {
-        return incluidoPlano;
-    }
-
-    public int getTotalAvaliacao() {
-        return totalAvaliacao;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setAnoLancamento(int anoLancamento) {
-        this.anoLancamento = anoLancamento;
-    }
-
-    public void setIncluidoPlano (boolean incluidoPlano) {
-        this.incluidoPlano = incluidoPlano;
-    }
-
-    public void setDuracaoMinutos(int duracaoMinutos) {
-        this.duracaoMinutos = duracaoMinutos;
-    }
-
-    //Imprime informações referente ao filme
-    public void exibeFichaTecnica () {
-        System.out.println("Nome do filme: " + nome);
-        System.out.println("Ano de lançamento: " + anoLancamento);
-    }
-
-    public void avalia (double nota) {
-
-        somaAvaliacao += nota;
-        totalAvaliacao++;
-    }
-
-    public double obterMedia () {
-        return somaAvaliacao / totalAvaliacao;
+    @Override
+    public int getClassificacao() {
+        return (int) obterMedia() / 2;
     }
 }
