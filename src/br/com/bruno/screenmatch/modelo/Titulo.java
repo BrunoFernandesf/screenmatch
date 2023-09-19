@@ -9,6 +9,11 @@ public class Titulo {
     private double somaAvaliacao;
     private int totalAvaliacao;
 
+    public Titulo(String nome, int anoLancamento) {
+        this.nome = nome;
+        this.anoLancamento = anoLancamento;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -27,14 +32,6 @@ public class Titulo {
 
     public int getTotalAvaliacao() {
         return totalAvaliacao;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setAnoLancamento(int anoLancamento) {
-        this.anoLancamento = anoLancamento;
     }
 
     public void setIncluidoPlano (boolean incluidoPlano) {
