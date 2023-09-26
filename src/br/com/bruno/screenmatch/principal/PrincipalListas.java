@@ -5,6 +5,9 @@ import br.com.bruno.screenmatch.modelo.Serie;
 import br.com.bruno.screenmatch.modelo.Titulo;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class PrincipalListas {
     public static void main(String[] args) {
@@ -13,13 +16,16 @@ public class PrincipalListas {
         var meuFilme3 = new Filme("Pacific Rim", 2018);
         Serie minhaSerie1 = new Serie("Avatar: last airbender", 2010);
 
-        ArrayList<Titulo> lista = new ArrayList<>();
+        List<Titulo> lista = new ArrayList<>();
         lista.add(meuFilme1);
         lista.add(meuFilme2);
         lista.add(meuFilme3);
         lista.add(minhaSerie1);
         for (Titulo item: lista) {
             System.out.println(item);
+            if(item instanceof Filme filme){
+                System.out.println("Imprime classificação "+ filme.getTotalAvaliacao());
+            }
             Filme filme = (Filme) item;
             System.out.println("Imprime classificação "+ filme.getTotalAvaliacao());
         }

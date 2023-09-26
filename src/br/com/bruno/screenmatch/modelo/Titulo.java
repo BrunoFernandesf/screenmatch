@@ -1,7 +1,10 @@
 package br.com.bruno.screenmatch.modelo;
 
+import br.com.bruno.screenmatch.excecao.ErroConversaoAnoException;
+import com.google.gson.annotations.SerializedName;
+
 //super class
-public class Titulo {
+public class Titulo implements Comparable<Titulo>{
     private String nome;
     private int anoLancamento;
     private int duracaoMinutos;
@@ -12,6 +15,15 @@ public class Titulo {
     public Titulo(String nome, int anoLancamento) {
         this.nome = nome;
         this.anoLancamento = anoLancamento;
+    }
+
+    public Titulo(TituloOmdb meuTituloOmdb) {
+        this.nome = meuTituloOmdb.title();
+        if(meuTituloOmdb.year().length() > 4){
+            throw new ErroConversaoAnoException("Não consegui converter o ano por ter mais de 04 caracteres");
+        }
+        this.anoLancamento = Integer.valueOf(meuTituloOmdb.year());
+        this.duracaoMinutos = Integer.valueOf(meuTituloOmdb.runtime().substring(0,2));
     }
 
     public String getNome() {
@@ -56,5 +68,16 @@ public class Titulo {
 
     public double obterMedia () {
         return somaAvaliacao / totalAvaliacao;
+    }
+
+    @Override
+    public int compareTo(Titulo o) {
+        return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "(nome = " + nome +
+                ", anoLancamento=" + anoLancamento + ", "+ "duração "+ duracaoMinutos+" minutos)";
     }
 }
